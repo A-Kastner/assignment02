@@ -1,5 +1,9 @@
 grammar Company;
 
+@header {
+package org.softlang.company.antlr;
+}
+
 @members {
 
 // public double total = 0;
