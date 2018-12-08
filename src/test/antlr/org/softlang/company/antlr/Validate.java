@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class Validate {
     @TestFactory
     Stream<DynamicTest> antlrTests() {
@@ -37,10 +39,10 @@ public class Validate {
                             () -> {
                                 CompilationUnit cu = JavaParser.parse(
                                         new FileInputStream("src/generated/java/org/softlang/"+ grammar + "BaseListener.java"));
-                                Parser parser = (Parser) Class.forName("org.softlang."+"Company"+"Parser")
+                                Parser parser = (Parser) Class.forName("org.softlang."+grammar+"Parser")
                                         .getConstructor(TokenStream.class).newInstance(new Object[] {null});
-                                Validator.validateBaseListener(
-                                        parser, cu);
+                                assertTrue(Validator.validateBaseListener(
+                                        parser, cu));
                             });
                 });
     }
