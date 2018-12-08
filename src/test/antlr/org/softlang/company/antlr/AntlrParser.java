@@ -1,8 +1,11 @@
 package org.softlang.company.antlr;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.softlang.CompanyParser;
 import org.softlang.CountParser;
 import org.softlang.company.Validator;
@@ -23,7 +26,8 @@ class AntlrParser {
 	         System.out.println();
 	         	         	       
 	    	 // TODO: Get the generated CompanyBaseListener.java and delete sampleListener.txt
-		     		    
+
+
 		     // Create
 		     CompilationUnit cu = JavaParser.parse(new FileInputStream("src/generated/java/org/softlang/CompanyBaseListener.java"));
 		     //CompilationUnit cu2 = JavaParser.parse(i2);

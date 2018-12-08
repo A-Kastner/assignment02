@@ -9,12 +9,21 @@ repositories {
 dependencies {
 
     // https://mvnrepository.com/artifact/org.antlr/antlr4-runtime
-    compile group: 'org.antlr', name: 'antlr4-runtime', version: '4.7.1'
+    implementation group: 'org.antlr', name: 'antlr4-runtime', version: '4.7.1'
     antlr "org.antlr:antlr4:4.7.1"
     // https://mvnrepository.com/artifact/com.github.javaparser/javaparser-core
-    compile group: 'com.github.javaparser', name: 'javaparser-core', version: '3.8.0'
+    implementation group: 'com.github.javaparser', name: 'javaparser-core', version: '3.8.0'
 
-    testCompile 'junit:junit:4.12'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+
+
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    )
+    testRuntimeOnly(
+            'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+    )
 }
 
 // generate java from the ANTLR g4 files
