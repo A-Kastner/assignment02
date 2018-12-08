@@ -1,7 +1,5 @@
-// Generated from org/softlang/company/antlr/Company.g4 by ANTLR 4.7.1
-
-package org.softlang.company.antlr;
-
+// Generated from org/softlang/Company.g4 by ANTLR 4.7.1
+package org.softlang;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -74,4 +72,4 @@ public class CompanyBaseListener implements CompanyListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void visitErrorNode(ErrorNode node) { }
-} 
+}

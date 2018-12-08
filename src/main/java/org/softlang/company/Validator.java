@@ -1,5 +1,6 @@
-package org.softlang.company.antlr;
+package org.softlang.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -16,11 +17,17 @@ public class Validator {
 
 	/*
 	 * Validates that for every Parser-rule name a dedicated enter and exit
-	 * stub-method was generated in the CompanyBaseListener class
+	 * stub-method was generated in the BaseListener class
 	 */
-	public static boolean validateBaseListener(Parser parser, CompilationUnit cUnit ) {	
+	public static boolean validateBaseListener(Parser parser, CompilationUnit cUnit ) {
 	       System.out.println("Parser rule names:");
-	       Arrays.stream(parser.getRuleNames()).forEach(System.out::println);
+	       List<String> expectedParserRules = new ArrayList<>();
+	       Arrays.stream(parser.getRuleNames()).map(s -> {
+	           String sUpper = s.substring(0, 1).toUpperCase() + s.substring(1);
+	           expectedParserRules.add("enter"+sUpper);
+	           expectedParserRules.add("exit"+sUpper);
+	           return s;
+           });
 		   
 		   // Find the BaseListener in the JavaParser AST
 		   Optional<ClassOrInterfaceDeclaration> baseListener = cUnit.findAll(ClassOrInterfaceDeclaration.class).stream()
@@ -34,9 +41,9 @@ public class Validator {
 					   .collect(Collectors.toList());
 			   System.out.println("\nExtracted method names");
 			   methods.stream().forEach(System.out::println);
-			   
-			   // ....
+			   return expectedParserRules.stream().allMatch(s -> methods.contains(s));
 		   }
 		   return false;		   
 	   }
+
 }

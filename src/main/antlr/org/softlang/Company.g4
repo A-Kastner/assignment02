@@ -1,30 +1,25 @@
 grammar Company;
 
-@header {
-package org.softlang.company.antlr;
-}
-
 @members {
-
-// public double total = 0;
-
+public double total = 0;
 }
 
 company :
   'company' STRING '{' department* '}' EOF;
-  
+
 department :
   'department' STRING '{'
     'manager' employee
-    ('employee' employee)* 
+    ('employee' employee)*
     department*
   '}';
 
 employee :
   STRING '{'
-    'address' STRING 
-    'salary' salary=FLOAT 
-   '}';
+    'address' STRING
+    'salary' FLOAT
+    { total += Double.parseDouble($FLOAT.text); }
+  '}';
 
 STRING  :   '"' (~'"')* '"';
 FLOAT   :   ('0'..'9')+ ('.' ('0'..'9')+)?;

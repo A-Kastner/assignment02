@@ -1,9 +1,5 @@
 grammar Count;
  
-@header {
-package org.softlang.company.antlr;
-}
- 
 @members {
 int count = 0;
 }
