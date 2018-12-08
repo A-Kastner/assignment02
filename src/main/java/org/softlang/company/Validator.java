@@ -27,7 +27,10 @@ public class Validator {
 	           expectedParserRules.add("enter"+sUpper);
 	           expectedParserRules.add("exit"+sUpper);
 	           return s;
-           });
+           }).forEach(System.out::println);
+
+           System.out.println("\nExpected methods:");
+           expectedParserRules.stream().forEach(System.out::println);
 		   
 		   // Find the BaseListener in the JavaParser AST
 		   Optional<ClassOrInterfaceDeclaration> baseListener = cUnit.findAll(ClassOrInterfaceDeclaration.class).stream()
@@ -39,7 +42,7 @@ public class Validator {
 					   .filter(n -> n instanceof MethodDeclaration)
 					   .map(n -> ((MethodDeclaration) n).getNameAsString())
 					   .collect(Collectors.toList());
-			   System.out.println("\nExtracted method names");
+			   System.out.println("\nExtracted methods:");
 			   methods.stream().forEach(System.out::println);
 			   return expectedParserRules.stream().allMatch(s -> methods.contains(s));
 		   }
