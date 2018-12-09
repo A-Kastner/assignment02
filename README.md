@@ -2,7 +2,7 @@
 
 ### Introduction
 
-This is a repo for the validation for the generated Java code by ANTLR4.  
+This is a repo for the validation of the generated Java code by ANTLR4.  
 It will check the following problems:
 
 #### BaseListener
@@ -18,7 +18,10 @@ For now only partial validation on this part.
 
 ### Usage
 
-Put your grammar into the **src/main/antlr/org/softlang** directory.  
+1. Put your grammar into the **src/main/antlr/org/softlang** directory.  
+2. Invoke the gradle build to generate the ANTLR and Java files
+3. Testing  
+
 Don't include headers and you should be good to go.
 
 #### Tests
