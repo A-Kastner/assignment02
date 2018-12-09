@@ -19,6 +19,12 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Validate {
+	
+    File folder = new File("src/main/antlr/org/softlang");
+    File[] listOfFiles = folder.listFiles();
+    
+    
+	
     @TestFactory
     Stream<DynamicTest> antlrTests() {
 
@@ -33,9 +39,9 @@ public class Validate {
                 .filter(s -> s != null)
                 .collect(Collectors.toList());
 
-        return grammarFiles.stream()
+        Stream<DynamicTest> baseListener = grammarFiles.stream()
                 .map(grammar -> {
-                    return DynamicTest.dynamicTest("Testing: " + grammar,
+                    return DynamicTest.dynamicTest("Testing BaseListener: " + grammar,
                             () -> {
                                 CompilationUnit cu = JavaParser.parse(
                                         new FileInputStream("src/generated/java/org/softlang/"+ grammar + "BaseListener.java"));
@@ -45,5 +51,21 @@ public class Validate {
                                         parser, cu));
                             });
                 });
+        
+        Stream<DynamicTest> baseVisitor = grammarFiles.stream()
+                .map(grammar -> {
+                    return DynamicTest.dynamicTest("Testing BaseVisitor: " + grammar,
+                            () -> {
+                                CompilationUnit cu = JavaParser.parse(
+                                        new FileInputStream("src/generated/java/org/softlang/"+ grammar + "BaseVisitor.java"));
+                                Parser parser = (Parser) Class.forName("org.softlang."+grammar+"Parser")
+                                        .getConstructor(TokenStream.class).newInstance(new Object[] {null});
+                                assertTrue(Validator.validateBaseVisitor(
+                                        parser, cu));
+                            });
+                });
+        
+        return Stream.concat(baseListener, baseVisitor);               
     }
+ 
 }
