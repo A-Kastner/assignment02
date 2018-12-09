@@ -26,7 +26,7 @@ Don't include headers and you should be good to go.
 
 #### Tests
 Tests are being generated dynamically.  
-Just run the **Validate Test** and you can see the test results and it's outputs.
+Just run the **Validate Test** and you can see the test results and its outputs.
 
 ### Problems we encountered
 A big problem in all software validation, is probably on which layer we shall start?  
