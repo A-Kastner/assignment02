@@ -64,8 +64,20 @@ public class Validate {
                                         parser, cu));
                             });
                 });
+
+        Stream<DynamicTest> lexer = grammarFiles.stream()
+                .map(grammar -> {
+                    return DynamicTest.dynamicTest("Testing Lexer: " + grammar,
+                            () -> {
+                                CompilationUnit cu = JavaParser.parse(
+                                        new FileInputStream("src/generated/java/org/softlang/"+ grammar + "Lexer.java"));
+                                assertTrue(Validator.validateLexer(
+                                        grammar, cu));
+                            });
+                });
         
-        return Stream.concat(baseListener, baseVisitor);               
+        return Stream.of(baseListener, baseVisitor, lexer).reduce(Stream::concat)
+                .orElseGet(Stream::empty);
     }
  
 }
