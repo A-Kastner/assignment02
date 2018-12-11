@@ -19,12 +19,12 @@ For now only partial validation on this part.
 
 There are two modes in this project due to both historical and interesting reasons.
 
-***META*** and ***non-META***  
+***META*** and ***semi-META***  
   
-***non-META*** just excludes the tag ***META***, so it will be listed as the default test without a tag.  
+***semi-META*** just excludes the tag ***META***, so it will be listed as the default test without a tag.  
 ***META*** is a metaprogrammed solution for the aboved mentioned problems.  
 We parse ANTLR with ANTLR and then validate the code.  
-Where in ***non-META*** we use the interpreted files that ANTLR provides us and then validate.
+Where in ***semi-META*** we use the interpreted files that ANTLR provides us and then validate.
   
 Currently only the BaseListener Problem is supported by ***META***.
 
