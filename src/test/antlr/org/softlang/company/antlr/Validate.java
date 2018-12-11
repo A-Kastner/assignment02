@@ -31,7 +31,7 @@ public class Validate {
     @TestFactory
     Stream<DynamicTest> antlrTests() {
 
-        File folder = new File("src/main/antlr/");
+        File folder = new File(Validator.ANTLR_PATH);
         File[] listOfFiles = folder.listFiles();
 
         List<String> grammarFiles = Arrays.stream(listOfFiles)
