@@ -26,7 +26,7 @@ There are two modes in this project due to both historical and interesting reaso
 We parse ANTLR with ANTLR and then validate the code.  
 Where in ***semi-META*** we use the interpreted files that ANTLR provides us and then validate.
   
-Currently only the BaseListener Problem is supported by ***META***.
+Currently only the BaseListener problem is supported by ***META***.
 
 ### Usage
 
