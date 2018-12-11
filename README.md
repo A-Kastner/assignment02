@@ -21,7 +21,7 @@ There are two modes in this project due to both historical and interesting reaso
 
 ***META*** and ***non-META***  
   
-***non-META*** just excludes the tag ***META***.  
+***non-META*** just excludes the tag ***META***, so it will be listed as the default test without a tag.  
 ***META*** is a metaprogrammed solution for the aboved mentioned problems.  
 We parse ANTLR with ANTLR and then validate the code.  
 Where in ***non-META*** we use the interpreted files that ANTLR provides us and then validate.
