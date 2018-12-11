@@ -40,8 +40,8 @@
 parser grammar ANTLRv4Parser;
 
 @header {
-   package org.softlang;
-  }
+package org.softlang;
+}
 
 options
    { tokenVocab = ANTLRv4Lexer; }

@@ -1,5 +1,10 @@
 grammar Count;
- 
+
+@header {
+package org.softlang;
+}
+
+
 @members {
 int count = 0;
 }

@@ -1,5 +1,9 @@
 grammar UniKoblenz;
 
+@header {
+package org.softlang;
+}
+
 uniKoblenz :
   'Universität Koblenz-Landau' '{'
 	'campus' CAMPUS

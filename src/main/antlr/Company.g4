@@ -4,6 +4,10 @@ grammar Company;
 public double total = 0;
 }
 
+@header {
+package org.softlang;
+}
+
 company :
   'company' STRING '{' department* '}' EOF;
 

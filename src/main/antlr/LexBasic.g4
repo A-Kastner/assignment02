@@ -37,8 +37,8 @@
 lexer grammar LexBasic;
 
 @header {
-   package org.softlang;
-  }
+package org.softlang;
+}
 
 
 // ======================================================
