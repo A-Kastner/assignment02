@@ -1,5 +1,4 @@
-// Generated from org/softlang/lambda.g4 by ANTLR 4.7.1
-package org.softlang;
+// Generated from lambda.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

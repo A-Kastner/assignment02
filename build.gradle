@@ -28,8 +28,8 @@ dependencies {
 
 // generate java from the ANTLR g4 files
 generateGrammarSource {
-    arguments = ['-visitor', '-package', 'org.softlang']
-    outputDirectory = file("${project.buildDir}/generated-src/main/java/")
+    arguments = ['-visitor']
+    outputDirectory = file("${project.buildDir}/generated-src/main/java/org/softlang/")
 }
 
 generateGrammarSource << {

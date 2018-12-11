@@ -1,5 +1,4 @@
-// Generated from org/softlang/UniKoblenz.g4 by ANTLR 4.7.1
-package org.softlang;
+// Generated from UniKoblenz.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
