@@ -22,7 +22,9 @@ import org.apache.commons.io.FileUtils;
 
 public class Validator {
 
-    public static final String LEXER_RULE_NAME = "rule names:";
+    public static final String RULE_NAMES = "rule names:";
+    public static final String BASE_PATH = "src/generated/java/org/softlang/";
+    public static final String ANTLR_PATH = "src/main/antlr/";
 
     /*
      * Validates that for every Parser-rule name a dedicated enter and exit
@@ -31,10 +33,9 @@ public class Validator {
     public static boolean validateBaseListener(Parser parser, CompilationUnit cUnit, boolean shallBeMeta) throws IOException {
         System.out.println("Parser rule names:");
         List<String> parserRules;
-        if(shallBeMeta){
+        if (shallBeMeta) {
             parserRules = getParserRulesMeta(parser.getGrammarFileName());
-        }
-        else {
+        } else {
             parserRules = Arrays.asList(parser.getRuleNames());
         }
         List<String> expectedParserRules = new ArrayList<>();
@@ -66,13 +67,20 @@ public class Validator {
     }
 
     private static List<String> getParserRulesMeta(String grammarName) throws IOException {
-        ANTLRv4Lexer lexer = new ANTLRv4Lexer(CharStreams.fromFileName("src/main/antlr/"+ grammarName));
+        ANTLRv4Lexer lexer = new ANTLRv4Lexer(CharStreams.fromFileName(ANTLR_PATH + grammarName));
         TokenStream tokenStream = new CommonTokenStream(lexer);
         ANTLRv4Parser parser = new ANTLRv4Parser(tokenStream);
         ParseTreeWalker treeWalker = new ParseTreeWalker();
         List<String> ruleNames = new ArrayList<>();
         treeWalker.walk(new ANTLR4Listener(ruleName -> ruleNames.add(ruleName)), parser.grammarSpec());
         return ruleNames;
+    }
+
+    private static List<String> getParserRules(String grammarName) throws IOException {
+        List<String> interp = FileUtils.readLines(new File(BASE_PATH + grammarName + ".interp"), StandardCharsets.UTF_8);
+        int startIndex = IntStream.range(0, interp.size()).filter(value -> RULE_NAMES.equals(interp.get(value))).findFirst().getAsInt();
+        int endIndex = IntStream.range(startIndex, interp.size()).filter(value -> "".equals(interp.get(value))).findFirst().getAsInt();
+        return interp.subList(startIndex + 1, endIndex);
     }
 
     public static boolean validateBaseVisitor(Parser parser, CompilationUnit cUnit) {
@@ -105,11 +113,7 @@ public class Validator {
     }
 
     public static boolean validateLexer(String grammarName, CompilationUnit cUnit) throws IOException {
-        List<String> interp = FileUtils.readLines(new File("src/generated/java/org/softlang/" + grammarName + "Lexer.interp"), StandardCharsets.UTF_8);
-        int startIndex = IntStream.range(0, interp.size()).filter(value -> LEXER_RULE_NAME.equals(interp.get(value))).findFirst().getAsInt();
-        int endIndex = IntStream.range(startIndex, interp.size()).filter(value -> "".equals(interp.get(value))).findFirst().getAsInt();
-
-        List<String> ruleNames = interp.subList(startIndex + 1, endIndex);
+        List<String> ruleNames = getParserRules(grammarName + "Lexer");
         System.out.println("\nExtracted lexer rule names from lexer interpreter:");
         ruleNames.stream().forEach(System.out::println);
 
