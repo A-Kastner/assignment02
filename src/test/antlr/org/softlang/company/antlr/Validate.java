@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Validate {
 
+	public static final String PACKAGE = "org.softlang.";
     public static final String BASE_LISTENER = "BaseListener.java";
     public static final String BASE_VISITOR = "BaseVisitor.java";
     public static final String PARSER = "Parser";
@@ -49,7 +50,7 @@ public class Validate {
                             () -> {
                                 CompilationUnit cu = JavaParser.parse(
                                         new FileInputStream(Validator.BASE_PATH + grammar + BASE_LISTENER));
-                                Parser parser = (Parser) Class.forName(grammar + PARSER)
+                                Parser parser = (Parser) Class.forName(PACKAGE + grammar + PARSER)
                                         .getConstructor(TokenStream.class).newInstance(new Object[]{null});
                                 assertTrue(Validator.validateBaseListener(
                                         parser, cu, true));
@@ -62,7 +63,7 @@ public class Validate {
                             () -> {
                                 CompilationUnit cu = JavaParser.parse(
                                         new FileInputStream(Validator.BASE_PATH + grammar + BASE_LISTENER));
-                                Parser parser = (Parser) Class.forName(grammar + PARSER)
+                                Parser parser = (Parser) Class.forName(PACKAGE + grammar + PARSER)
                                         .getConstructor(TokenStream.class).newInstance(new Object[]{null});
                                 assertTrue(Validator.validateBaseListener(
                                         parser, cu, false));
@@ -75,7 +76,7 @@ public class Validate {
                             () -> {
                                 CompilationUnit cu = JavaParser.parse(
                                         new FileInputStream(Validator.BASE_PATH + grammar + BASE_VISITOR));
-                                Parser parser = (Parser) Class.forName(grammar + PARSER)
+                                Parser parser = (Parser) Class.forName(PACKAGE + grammar + PARSER)
                                         .getConstructor(TokenStream.class).newInstance(new Object[]{null});
                                 assertTrue(Validator.validateBaseVisitor(
                                         parser, cu));

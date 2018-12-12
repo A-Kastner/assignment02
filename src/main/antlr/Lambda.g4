@@ -30,7 +30,11 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-grammar lambda;
+grammar Lambda;
+
+@header {
+package org.softlang;
+}
 
 expression
     : VARIABLE | function | application
