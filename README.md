@@ -30,13 +30,12 @@ Currently only the BaseListener problem is supported by ***META***.
 
 ### Usage
 
-1. Put your grammar into the **src/main/antlr/** directory.
-2. You may clean the project by gradle
+1. Put your grammar into the **src/main/antlr/** directory
+2. Add the below mentioned header to your grammar files
 3. Invoke the gradle build to generate the ANTLR and Java files
 3. Testing  
 
-It is **not necessary** to include the package name in the header from your grammar files but it is recommended to do so if you want to test further by e.g. customizing this project.    
-**Optionally** add the following header to your grammar file:
+Add the following header to your grammar file:
 ```
 @header {
 package org.softlang;
