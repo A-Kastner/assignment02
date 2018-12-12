@@ -35,7 +35,13 @@ Currently only the BaseListener problem is supported by ***META***.
 3. Invoke the gradle build to generate the ANTLR and Java files
 3. Testing  
 
-Don't include headers and you should be good to go.
+It is **not necessary** to include the package name in the header from your grammar files but it is recommended to do so if you want to test further by e.g. customizing this project.    
+**Optionally** add the following header to your grammar file:
+```
+@header {
+package org.softlang;
+}
+```
 
 #### Tests
 Tests are being generated dynamically.  
