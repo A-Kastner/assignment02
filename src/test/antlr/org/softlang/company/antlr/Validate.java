@@ -99,7 +99,8 @@ public class Validate {
     }
 
     private boolean isPartOfMeta(String name) {
-        return (name.equals("ANTLRv4Lexer.g4") || name.equals("ANTLRv4Parser.g4") || name.equals("LexBasic.g4"));
+        return (name.equals("ANTLRv4Lexer.g4") || name.equals("ANTLRv4Parser.g4")
+                || name.equals("LexBasic.g4")|| name.equals(".DS_Store"));
     }
 
 }
